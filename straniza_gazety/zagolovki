@@ -1,0 +1,43 @@
+#С помощью urllib.request нужно скачать главную страницу вашей газеты, извлечь
+#оттуда все заголовки статей и напечатать заголовки в отдельный текстовый файл.
+
+import urllib.request  # импорт модуля
+req = urllib.request.Request('http://ngisnrj.ru/')
+with urllib.request.urlopen(req) as response:
+    html = response.read().decode('utf-8')
+
+
+url = 'http://ngisnrj.ru/'  # адрес страницы, которую мы хотим скачать
+user_agent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)'  # хотим притворяться браузером
+
+req = urllib.request.Request('http://ngisnrj.ru/', headers={'User-Agent':user_agent})  
+# добавили в запрос информацию о том, что мы браузер Мозилла
+
+with urllib.request.urlopen(req) as response:
+    html = response.read().decode('utf-8')
+
+import re
+regPostTitle = re.compile('<li class="b-sidebar-list__item">.*?</li>', flags= re.DOTALL)
+titles = regPostTitle.findall(html)
+
+
+
+
+new_titles = []
+regTag = re.compile('<.*?>', re.DOTALL)
+regSpace = re.compile('\s{2,}', re.DOTALL)
+for t in titles:
+    clean_t = regSpace.sub("", t)
+    clean_t = regTag.sub("", clean_t)
+    new_titles.append(clean_t)
+
+for t in new_titles:
+    print(t.replace("&nbsp;&rarr;", " -> "))
+
+my_file = open('zagolovki.txt', 'w')
+ 
+text_for_file = t.replace("&nbsp;&rarr;", " -> ")
+my_file.write(text_for_file)
+ 
+my_file.close()
+
