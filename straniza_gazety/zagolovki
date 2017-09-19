@@ -29,9 +29,9 @@ for t in titles:
     new_titles.append(clean_t)
 
 for t in new_titles:
-    print(t.replace("&nbsp;&rarr;", " -> "))
+    print(t.replace("&nbsp;&rarr;", " -> ")) #вывести модифицированный заголовок на экран
     text_for_file = t.replace("&nbsp;&rarr;", " -> ")
-    my_file.write(text_for_file)
-    my_file.write("\r")
+    my_file.write(text_for_file) #написать модифицированный заголовок в файл
+    my_file.write("\r") #добавить в конце строки перенос строки
     
 my_file.close()
