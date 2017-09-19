@@ -18,7 +18,7 @@ regPostTitle = re.compile('<li class="b-sidebar-list__item">.*?</li>', flags= re
 titles = regPostTitle.findall(html)
 
 
-
+my_file = open('zagolovki.txt', 'w')
 
 new_titles = []
 regTag = re.compile('<.*?>', re.DOTALL)
@@ -30,11 +30,8 @@ for t in titles:
 
 for t in new_titles:
     print(t.replace("&nbsp;&rarr;", " -> "))
-
-my_file = open('zagolovki.txt', 'w')
- 
-text_for_file = t.replace("&nbsp;&rarr;", " -> ")
-my_file.write(text_for_file)
- 
+    text_for_file = t.replace("&nbsp;&rarr;", " -> ")
+    my_file.write(text_for_file)
+    my_file.write("\r")
+    
 my_file.close()
-
