@@ -2,9 +2,6 @@
 #оттуда все заголовки статей и напечатать заголовки в отдельный текстовый файл.
 
 import urllib.request  # импорт модуля
-req = urllib.request.Request('http://ngisnrj.ru/')
-with urllib.request.urlopen(req) as response:
-    html = response.read().decode('utf-8')
 
 
 url = 'http://ngisnrj.ru/'  # адрес страницы, которую мы хотим скачать
