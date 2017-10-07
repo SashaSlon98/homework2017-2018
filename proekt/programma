@@ -1,0 +1,215 @@
+import urllib.request
+import re
+import os
+
+
+# Функция для скачивания страницы
+def inUrl(url):
+    req = urllib.request.Request(url)
+    with urllib.request.urlopen(req) as response:
+        html = response.read().decode('utf-8')
+    return html
+
+try:
+    os.mkdir('plain')
+    os.mkdir('mystem-xml')
+    os.mkdir('mystem-plain')
+except:
+    pass
+
+urlMain = 'http://ngisnrj.ru'
+page = 1
+numArt = 1
+
+# Поиск статей на странице
+sArticle = re.compile('<h2 class="b-object__list__item__title">.*?</h2>', re.DOTALL)
+
+# Поиск ссылки на статью
+sHref = re.compile('/.*?"', re.DOTALL)
+
+# Извлечение автора статьи
+sAutor = re.compile('<span class="b-object__detail__author__name">.*?</span>', re.DOTALL)
+
+# Извлечения названия статьи
+sNameArt = re.compile('<h1 class="b-object__detail__title">.*?</h1>', re.DOTALL)
+
+# Извлечение даты статьи
+sDate = re.compile('<span class="b-object__detail__issue__date">.*?</span>', re.DOTALL)
+
+# Извлечение категорий
+sCategoryUl = re.compile('<ul>.*?</ul>', re.DOTALL)
+
+# Извлечение текста статьи по пунктно
+sText = re.compile('<p>.*?</p>', re.DOTALL)
+sText_2 = re.compile('<span>.*?</span>', re.DOTALL)
+
+# Извлечение текста статьи
+sDivText = re.compile('<div class="b-block-text__text">.*?</div>', re.DOTALL)
+
+# Извлечение даты
+stDate = re.compile('\d{2}.\d{2}.\d{4}', re.DOTALL)
+
+# Дата, если статья не была опубликована
+sNoDate = re.compile('<span class="date">.*?</span>', re.DOTALL)
+
+# Удаление тегов
+regTag = re.compile('<.*?>', re.DOTALL)
+
+# Удаление переносов
+regSpace = re.compile('\s{2,}', re.DOTALL)
+
+# Для определения количества страниц
+numPageText = re.compile('<a class="b-paginator__next".*?>.*?</a>', re.DOTALL)
+
+while True:
+    print("Страница - %s" % page)
+    article = sArticle.findall(inUrl('http://ngisnrj.ru/article/?page=%s' % page))
+
+    category = []
+    dictory = {'&nbsp;': '', '&raquo;': '»', '&laquo;': '«', '&ndash;': '-',
+               '&hellip;': '...', '&mdash;': ' — '}
+
+    for item in article:
+
+        print('\tСтатья - %s' %numArt)
+        
+        href = sHref.search(item)
+        href = href.group()[:-1]
+
+        try:
+            autor = sAutor.search(inUrl('{}{}'.format(urlMain, href))).group()
+            autor = regSpace.sub('', autor)
+            autor = regTag.sub('', autor)
+        except AttributeError:
+            autor = 'Noname'
+        
+        nameArt = sNameArt.search(inUrl('{}{}'.format(urlMain, href))).group()
+        nameArt = regSpace.sub('', nameArt)
+        nameArt = regTag.sub('', nameArt)
+
+        try:
+            date = stDate.search(sDate.search(inUrl('{}{}'.format(urlMain, href))).group()).group()
+            date = regSpace.sub('', date)
+            date = regTag.sub('', date)
+        except AttributeError:
+            date = sNoDate.findall(inUrl('{}{}'.format(urlMain, href)))
+            date = regSpace.sub('', date[1])
+            date = regTag.sub('', date)
+        
+        try:
+            categoryUl = sCategoryUl.findall(inUrl('{}{}'.format(urlMain, href)))
+            categoryUl = regTag.sub('.', categoryUl[1]).split('....')
+            for then in categoryUl:
+                category.append(then.replace('...', ''))
+        except:
+            category.append('NoCategory')
+        
+
+        divText = sDivText.search(inUrl('{}{}'.format(urlMain, href))).group()
+
+        # Создание каталога и файла в нем
+
+        pathMain = r'plain\{}\{}'.format(date[6:10], date[3:5])
+
+        if not os.path.isdir(pathMain):
+            os.makedirs(pathMain)
+
+        nameFile = 'stat' + str(numArt) + '.txt'
+        file = open(pathMain + '\\' + nameFile, 'w+', encoding = 'utf-8')
+            
+        path = r'mystem-plain\{}\{}'.format(date[6:10], date[3:5])
+        
+        if not os.path.isdir(path):
+            os.makedirs(path)
+
+        path = r'mystem-xml\{}\{}'.format(date[6:10], date[3:5])
+
+        if not os.path.isdir(path):
+            os.makedirs(path)
+            
+        text = sText.findall(divText)
+        if len(text) > 0:
+            for tex in text:
+                text = regSpace.sub('', tex)
+                text = regTag.sub('', text)
+
+                for it in dictory:
+                    text = text.replace(it, dictory[it])
+
+                file.write(text+'\n')
+        else:
+            text = sText_2.findall(divText)
+            for tex in text:
+                text = regSpace.sub('', tex)
+                text = regTag.sub('', text)
+
+                for it in dictory:
+                    text = text.replace(it, dictory[it])
+
+                file.write(text+'\n')
+            
+        file.close()
+
+        path = os.getcwd()+'\\'
+        
+        # mystem-plain
+        os.system(path + 'mystem.exe -cid ' + pathMain+'\\'+nameFile + ' ' + 
+                  path+'mystem-plain\\' + date[6:10] + '\\' + date[3:5] + '\\' +
+                  nameFile)
+        # mystem-xml
+        os.system(path + 'mystem.exe -cid --format xml ' + pathMain+'\\'+nameFile + ' ' + 
+                  path+'mystem-xml\\' + date[6:10] + '\\' + date[3:5] + '\\' +
+                  nameFile)
+
+        file = open(pathMain + '\\' + nameFile, 'w+', encoding = 'utf-8')
+        file.write('@au {}\n'.format(autor))
+        file.write('@ti {}\n'.format(nameArt))
+        file.write('@da {}\n'.format(date))
+        file.write('@topic ')
+        for cat in category:
+            file.write(cat+' ')
+        file.write('\n')
+        file.write('@url {}{}\n'.format(urlMain, href))
+
+        text = sText.findall(divText)
+        if len(text) > 0:
+            for tex in text:
+                text = regSpace.sub('', tex)
+                text = regTag.sub('', text)
+
+                for it in dictory:
+                    text = text.replace(it, dictory[it])
+
+                file.write(text+'\n')
+        else:
+            text = sText_2.findall(divText)
+            for tex in text:
+                text = regSpace.sub('', tex)
+                text = regTag.sub('', text)
+
+                for it in dictory:
+                    text = text.replace(it, dictory[it])
+
+                file.write(text+'\n')
+
+        file.close()
+
+        file = open('metadata.csv', 'a+', encoding='utf-8')
+        file.write(pathMain+'\\'+nameFile+'\t'+autor+'\t'+''+'\t'+''+'\t'+
+                   nameArt+'\t'+date+'\t'+'публицистика'+'\t'+''+'\t'+''+'\t'+
+                   category[0]+'\t'+''+'\t'+'нейтральный'+'\t'+'н-возраст'+
+                   '\t'+'н-уровень'+'\t'+'районная'+'\t'+urlMain+href+'\t'+
+                   'Наша жизнь'+'\t'+''+'\t'+date[6:10]+'\t'+'газета'+'\t'+
+                   'Россия'+'\t'+' Ракитянский район и Краснояружский район'+
+                   '\t'+'ru\n')
+        file.close()
+
+        numArt +=  1
+        category = []
+    
+    try:
+        page = re.search('\d+', numPageText.search(inUrl('http://ngisnrj.ru/article/?page=%s' % page)).group()).group()
+    except:
+        break
+
+ 
