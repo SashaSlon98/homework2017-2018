@@ -43,7 +43,7 @@ def index():
         return redirect(url_for('stats'))
 
     return render_template(
-        'index_b.html',
+        'index.html',
         swadesh_list=SWADESH_LIST
     )
 
@@ -76,7 +76,7 @@ def read_dictionaries():
 def stats():
     swadesh_dictionaries = read_dictionaries()
     return render_template(
-        'stats_b.html',
+        'stats.html',
         dictionaries=swadesh_dictionaries
     )
 
@@ -89,7 +89,7 @@ def stats_json():
 
 @app.route('/search')
 def search():
-    return render_template('search_b.html')
+    return render_template('search.html')
 
 
 @app.route('/results')
@@ -129,7 +129,7 @@ def results():
                     swadesh_dictionaries = None
 
         return render_template(
-            'stats_b.html',
+            'stats.html',
             dictionaries=swadesh_dictionaries
         )
     return redirect(url_for('search'))
