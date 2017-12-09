@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block body %}
+    <div class="content">
+        <h2>Анкета</h2>
+        <form>
+            <div>
+                <label>Ваше имя:</label>
+                <div>
+                    <input type="text" name="informant" placeholder="Ваше имя" required>
+                </div>
+            </div>
+            <div>
+                <label>Язык:</label>
+                <div>
+                    <input type="text" name="language" placeholder="Язык" required>
+                </div>
+            </div>
+            {% for word in swadesh_list %}
+                <div>
+                    <label>{{ word }}:</label>
+                    <div>
+                        <input type="text" name="w{{ loop.index }}" placeholder="{{ word }}">
+                    </div>
+                    <div>
+                        <input type="text" name="c{{ loop.index }}" placeholder="Комментарий">
+                    </div>
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </form>
+    </div>
+{% endblock %}

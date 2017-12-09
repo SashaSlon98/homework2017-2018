@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block body %}
+    <div class="content">
+        {% if dictionaries %}
+            <h2>Словари</h2>
+            <table align="center">
+                <thead>
+                <tr>
+                    <th>Язык</th>
+                    <th>Информант</th>
+                    <th>Слово</th>
+                    <th>Перевод</th>
+                    <th>Комментарий</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for language, informant_dictionaries in dictionaries.items() %}
+                    {% for informant, dictionary in informant_dictionaries.items() %}
+                        {% for ru_word, (foreign_word, comment) in dictionary.items() %}
+                            <tr>
+                                {% if loop.index == 1 %}
+                                    <td rowspan="{{ dictionary|length }}">{{ language }}</td>
+                                    <td rowspan="{{ dictionary|length }}">{{ informant }}</td>
+                                {% endif %}
+                                <td>{{ ru_word }}</td>
+                                <td>{{ foreign_word }}</td>
+                                <td>{{ comment }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h2>Словарей не найдено</h2>
+        {% endif %}
+    </div>
+{% endblock %}
