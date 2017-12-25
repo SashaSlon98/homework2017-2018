@@ -1,0 +1,17 @@
+{% include "base.html" %}
+{% block body %}
+<style>
+    .container {
+        width: 400px;
+    }
+</style>
+<div class="container text-center">
+    <form class="justify-content-center" action="/translate">
+        <div class="form-group">
+            <label for="inputText" class="col-form-label">Английское слово:</label>
+            <input class="form-control" id="inputText" name="word">
+        </div>
+        <button type="submit" class="btn btn-primary">Перевести</button>
+    </form>
+</div>
+{% endblock %}
