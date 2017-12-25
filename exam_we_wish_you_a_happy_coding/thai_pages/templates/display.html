@@ -1,0 +1,11 @@
+{% include "base.html" %}
+{% block body %}
+    <div class="container text-center">
+        {% if translation %}
+            <h4>Перевод слова "{{ word }}":</h4>
+            <h2>{{ '; '.join(translation) }}</h2>
+        {% else %}
+            <h4>Перевод слова "{{ word }}" не найден</h4>
+        {% endif %}
+    </div>
+{% endblock %}
