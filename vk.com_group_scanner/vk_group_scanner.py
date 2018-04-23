@@ -56,7 +56,7 @@ def get_comments(group_id, post_id):
             'wall.getComments',
             owner_id=group_id,
             post_id=post_id,
-            offset=0,
+            offset=i,
             count=100,
             preview_length=0,
             extended=1,
