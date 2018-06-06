@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gexf version="1.2" xmlns="http://www.gexf.net/1.2draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2001/XMLSchema-instance">
+  <graph defaultedgetype="undirected" mode="static" name="">
+    <meta>
+      <creator>NetworkX 2.1</creator>
+      <lastmodified>04/06/2018</lastmodified>
+    </meta>
+    <nodes>
+      <node id="вешалка_NOUN" label="вешалка_NOUN" />
+      <node id="ваза_NOUN" label="ваза_NOUN" />
+      <node id="кровать_NOUN" label="кровать_NOUN" />
+      <node id="подушка_NOUN" label="подушка_NOUN" />
+      <node id="ручка_NOUN" label="ручка_NOUN" />
+      <node id="полка_NOUN" label="полка_NOUN" />
+      <node id="тетрадь_NOUN" label="тетрадь_NOUN" />
+      <node id="гардероб_NOUN" label="гардероб_NOUN" />
+      <node id="кресло_NOUN" label="кресло_NOUN" />
+      <node id="обувь_NOUN" label="обувь_NOUN" />
+      <node id="стеллаж _NOUN" label="стеллаж _NOUN" />
+      <node id="лист_NOUN" label="лист_NOUN" />
+      <node id="покрывало_NOUN" label="покрывало_NOUN" />
+      <node id="блокнот_NOUN" label="блокнот_NOUN" />
+      <node id="стол_NOUN" label="стол_NOUN" />
+      <node id="одежда_NOUN" label="одежда_NOUN" />
+      <node id="балкон_NOUN" label="балкон_NOUN" />
+      <node id="светильник_NOUN" label="светильник_NOUN" />
+      <node id="потолок_NOUN" label="потолок_NOUN" />
+      <node id="ножницы_NOUN" label="ножницы_NOUN" />
+      <node id="зеркало_NOUN" label="зеркало_NOUN" />
+      <node id="пол_NOUN" label="пол_NOUN" />
+      <node id="шкаф_NOUN" label="шкаф_NOUN" />
+      <node id="стул_NOUN" label="стул_NOUN" />
+      <node id="карандаш_NOUN" label="карандаш_NOUN" />
+      <node id="подоконник_NOUN" label="подоконник_NOUN" />
+      <node id="утюг_NOUN" label="утюг_NOUN" />
+      <node id="одеяло_NOUN" label="одеяло_NOUN" />
+      <node id="ковёр_NOUN" label="ковёр_NOUN" />
+      <node id="диван_NOUN" label="диван_NOUN" />
+    </nodes>
+    <edges>
+      <edge id="0" source="вешалка_NOUN" target="вешалка_NOUN" />
+      <edge id="1" source="вешалка_NOUN" target="стул_NOUN" />
+      <edge id="2" source="вешалка_NOUN" target="кровать_NOUN" />
+      <edge id="3" source="вешалка_NOUN" target="шкаф_NOUN" />
+      <edge id="4" source="вешалка_NOUN" target="гардероб_NOUN" />
+      <edge id="5" source="ваза_NOUN" target="ваза_NOUN" />
+      <edge id="6" source="кровать_NOUN" target="стол_NOUN" />
+      <edge id="7" source="кровать_NOUN" target="пол_NOUN" />
+      <edge id="8" source="кровать_NOUN" target="подоконник_NOUN" />
+      <edge id="9" source="кровать_NOUN" target="кровать_NOUN" />
+      <edge id="10" source="кровать_NOUN" target="кресло_NOUN" />
+      <edge id="11" source="кровать_NOUN" target="подушка_NOUN" />
+      <edge id="12" source="кровать_NOUN" target="одеяло_NOUN" />
+      <edge id="13" source="кровать_NOUN" target="стул_NOUN" />
+      <edge id="14" source="кровать_NOUN" target="диван_NOUN" />
+      <edge id="15" source="кровать_NOUN" target="шкаф_NOUN" />
+      <edge id="16" source="подушка_NOUN" target="кресло_NOUN" />
+      <edge id="17" source="подушка_NOUN" target="одеяло_NOUN" />
+      <edge id="18" source="подушка_NOUN" target="подушка_NOUN" />
+      <edge id="19" source="подушка_NOUN" target="покрывало_NOUN" />
+      <edge id="20" source="подушка_NOUN" target="диван_NOUN" />
+      <edge id="21" source="ручка_NOUN" target="ручка_NOUN" />
+      <edge id="22" source="полка_NOUN" target="полка_NOUN" />
+      <edge id="23" source="тетрадь_NOUN" target="тетрадь_NOUN" />
+      <edge id="24" source="тетрадь_NOUN" target="карандаш_NOUN" />
+      <edge id="25" source="тетрадь_NOUN" target="блокнот_NOUN" />
+      <edge id="26" source="гардероб_NOUN" target="гардероб_NOUN" />
+      <edge id="27" source="гардероб_NOUN" target="шкаф_NOUN" />
+      <edge id="28" source="кресло_NOUN" target="стол_NOUN" />
+      <edge id="29" source="кресло_NOUN" target="кресло_NOUN" />
+      <edge id="30" source="кресло_NOUN" target="стул_NOUN" />
+      <edge id="31" source="кресло_NOUN" target="диван_NOUN" />
+      <edge id="32" source="обувь_NOUN" target="обувь_NOUN" />
+      <edge id="33" source="обувь_NOUN" target="одежда_NOUN" />
+      <edge id="34" source="лист_NOUN" target="лист_NOUN" />
+      <edge id="35" source="покрывало_NOUN" target="одеяло_NOUN" />
+      <edge id="36" source="покрывало_NOUN" target="покрывало_NOUN" />
+      <edge id="37" source="покрывало_NOUN" target="одежда_NOUN" />
+      <edge id="38" source="блокнот_NOUN" target="карандаш_NOUN" />
+      <edge id="39" source="блокнот_NOUN" target="блокнот_NOUN" />
+      <edge id="40" source="стол_NOUN" target="стол_NOUN" />
+      <edge id="41" source="стол_NOUN" target="подоконник_NOUN" />
+      <edge id="42" source="стол_NOUN" target="стул_NOUN" />
+      <edge id="43" source="стол_NOUN" target="диван_NOUN" />
+      <edge id="44" source="стол_NOUN" target="шкаф_NOUN" />
+      <edge id="45" source="одежда_NOUN" target="одежда_NOUN" />
+      <edge id="46" source="балкон_NOUN" target="подоконник_NOUN" />
+      <edge id="47" source="балкон_NOUN" target="балкон_NOUN" />
+      <edge id="48" source="светильник_NOUN" target="светильник_NOUN" />
+      <edge id="49" source="потолок_NOUN" target="потолок_NOUN" />
+      <edge id="50" source="потолок_NOUN" target="пол_NOUN" />
+      <edge id="51" source="потолок_NOUN" target="подоконник_NOUN" />
+      <edge id="52" source="ножницы_NOUN" target="ножницы_NOUN" />
+      <edge id="53" source="зеркало_NOUN" target="зеркало_NOUN" />
+      <edge id="54" source="пол_NOUN" target="пол_NOUN" />
+      <edge id="55" source="пол_NOUN" target="подоконник_NOUN" />
+      <edge id="56" source="шкаф_NOUN" target="подоконник_NOUN" />
+      <edge id="57" source="шкаф_NOUN" target="стул_NOUN" />
+      <edge id="58" source="шкаф_NOUN" target="диван_NOUN" />
+      <edge id="59" source="шкаф_NOUN" target="шкаф_NOUN" />
+      <edge id="60" source="стул_NOUN" target="подоконник_NOUN" />
+      <edge id="61" source="стул_NOUN" target="стул_NOUN" />
+      <edge id="62" source="стул_NOUN" target="диван_NOUN" />
+      <edge id="63" source="карандаш_NOUN" target="карандаш_NOUN" />
+      <edge id="64" source="подоконник_NOUN" target="подоконник_NOUN" />
+      <edge id="65" source="подоконник_NOUN" target="диван_NOUN" />
+      <edge id="66" source="утюг_NOUN" target="утюг_NOUN" />
+      <edge id="67" source="одеяло_NOUN" target="одеяло_NOUN" />
+      <edge id="68" source="одеяло_NOUN" target="диван_NOUN" />
+      <edge id="69" source="диван_NOUN" target="диван_NOUN" />
+    </edges>
+  </graph>
+</gexf>
